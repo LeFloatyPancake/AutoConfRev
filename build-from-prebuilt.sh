@@ -170,7 +170,35 @@ if [ -n "$INCLUDED_PATCHES" ]; then
 fi
 
 # Execute the cli and if an adb device name is given deploy on device
-"$JAVA" -jar "revanced-cli.jar" -a "stock.apk" -o "revanced.apk" -b "revanced-patches.jar" -m "integrations.apk" $(if [ -n "$1" ]; then echo "-d $1"; fi) -t "temp" -e theme -e custom-branding $(if [ "$ROOT" = "1" ]; then echo "--mount"; fi) $EXCLUDE $INCLUDE
+"$JAVA" -jar "revanced-cli.jar" -a "stock.apk" -o "revanced.apk" -b "revanced-patches.jar" -m "integrations.apk" $(if [ -n "$1" ]; then echo "-d $1"; fi) -t "temp" \
+-e hide-crowdfunding-box \
+-e hide-time-and-seekbar \
+-e hide-video-buttons \
+-e enable-wide-searchbar \
+-e hide-captions-button \
+-e hide-shorts-button \
+-e hide-create-button \
+-e hide-autoplay-button \
+-e hide-album-cards \
+-e disable-auto-player-popup-panels \
+-e disable-auto-captions \
+-e disable-fullscreen-panels \
+-e hide-artist-card \
+-e return-youtube-dislike \
+-e comments \
+-e theme \
+-e hide-email-address \
+-e tablet-mini-player \
+-e hide-my-mix \
+-e custom-branding \
+-e premium-heading \
+-e old-quality-layout \
+-e downloads \
+-e custom-video-buffer \
+-e always-autorepeat \
+-e enable-debugging \
+-e custom-playback-speed \
+$(if [ "$ROOT" = "1" ]; then echo "--mount"; fi) $EXCLUDE $INCLUDE
 
 if [ -e "$DIR/build/revanced.apk" ]; then cp "$DIR/build/revanced.apk" "$DIR/revanced.apk"; fi
 
